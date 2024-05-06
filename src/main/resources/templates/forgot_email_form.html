@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Home Page</title>
+
+</head>
+
+<body>
+
+	<section>
+		<div class="container mt-4 p-4">
+			<div class="d-flex justify-content-center h-100">
+				<div class="card login-card">
+					<div class="card-header login-card-header text-center">
+						<h3>Sign In</h3>
+						<span><i class="fa fa-sign-in fa-2x text-white"></i></span>
+
+
+					</div>
+					<div class="card-body">
+						<!--Message box-->
+						<div th:if="${session.message}" class="container">
+							<div class="alert alert-danger text-center" role="alert">
+
+								<span th:text="${session.message}"></span>
+
+							</div>
+							<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+						</div>
+
+						<!-- email form-->
+						<h3 class="text-center text-white">Your Registered Email</h3>
+
+						<form th:action="@{/send-otp}" method="post">
+
+							<div class="form-group mt-4">
+
+								<input required name="email" type="email" placeholder="enter email here"
+									class="form-control" />
+
+
+							</div>
+							<div class="container text-center mt-4">
+								<button type="submit" class="btn btn-warning">Send OTP</button>
+							</div>
+						</form>
+						<div class="d-flex justify-content-center links mt-4">
+							Don't have an account?<a th:href="@{/signup}">Sign Up</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>
